@@ -9,3 +9,10 @@ kansas_tax_rates = [0.031, 0.0525, 0.057]
 kansas_single_caps = [15000, 30000, 1000000000000]
 kansas_married_caps = [30000, 60000, 1000000000000]
 kansas_hoh_caps = [30000, 60000, 1000000000000]
+
+social_security_rate = 0.062
+social_security_max = 160200 / 2  # (Employer Pays Half)
+
+medicare_rate = 0.0145
+medicare_premium_rate = 0.009
+medicare_premium_wage = 200000

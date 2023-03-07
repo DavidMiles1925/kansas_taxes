@@ -24,7 +24,6 @@ while is_int == False:
         print('Invalid input')
         status_input = input('Enter your filing Status: ')
 
-print('')
 income = input('Enter your gross income: ')
 
 while is_number == False:
@@ -36,7 +35,7 @@ while is_number == False:
         print('Invalid input, please enter a number')
         income = input('Enter your gross income: ')
 
-# --- Status Logic ---
+# --- Status Logic --- #
 if (status_input == 1):
     fed_cap = constants.fed_single_caps
     kansas_cap = constants.kansas_single_caps
@@ -47,7 +46,7 @@ elif (status_input == 3):
     fed_cap = constants.fed_hoh_caps
     kansas_cap = constants.kansas_hoh_caps
 
-# --- Federal Tax Calculation ---
+# --- Federal Tax Calculation --- #
 fed_taxes_paid = 0
 left_to_tax = income
 
@@ -61,7 +60,7 @@ for x in range(len(fed_cap)):
             (constants.fed_tax_rates[x] * left_to_tax)
         left_to_tax = 0
 
-# --- State Tax Calculation ---
+# --- State Tax Calculation --- #
 kansas_taxes_paid = 0
 left_to_tax = income
 
@@ -75,21 +74,46 @@ for y in range(len(kansas_cap)):
             (constants.kansas_tax_rates[y] * left_to_tax)
         left_to_tax = 0
 
-# --- Final Calculations ---
+# --- FICA Calculations --- #
+social_security_paid = income * constants.social_security_rate
+
+if social_security_paid >= constants.social_security_max:
+    social_security_paid = constants.social_security_max
+
+if income > constants.medicare_premium_wage:
+    medicare_paid = round(
+        income * (constants.medicare_rate + constants.medicare_premium_rate), 2)
+else:
+    medicare_paid = round(income * constants.medicare_rate, 2)
+
+# --- Final Calculations --- #
 fed_taxes_paid = round(fed_taxes_paid, 2)
 kansas_taxes_paid = round(kansas_taxes_paid, 2)
 total_taxes_paid = round((fed_taxes_paid + kansas_taxes_paid), 2)
-income_after_tax = round((income - total_taxes_paid), 2)
+income_after_tax = round(
+    (income - total_taxes_paid - medicare_paid - social_security_paid), 2)
 monthly_income = round((income_after_tax / 12), 2)
+weekly_income = round((income_after_tax / 52), 2)
 
-# --- Output ---
+# --- Output --- #
 print('')
-print('Federal Taxes Paid: ', fed_taxes_paid)
-print('Kansas Taxes Paid: ', kansas_taxes_paid)
 print('')
-print('Income After Tax: ', income_after_tax)
+print('***************** Taxes *****************')
 print('')
-print('Monthly Income: ', monthly_income)
+print('Federal Taxes Paid:   ', fed_taxes_paid)
+print('Kansas Taxes Paid:    ', kansas_taxes_paid)
 print('')
-print("________________________________")
+print('***************** FICA ******************')
+print('')
+print('Social Security Paid: ', social_security_paid)
+print('Medicare Paid:        ', medicare_paid)
+print('')
+print('***************** Income ****************')
+print('')
+print('Net Income:           ', income_after_tax)
+print('')
+print('Monthly Income:       ', monthly_income)
+print('Weekly Income:        ', weekly_income)
+print('')
+print("_________________________________________")
 input("Press ENTER to exit")
