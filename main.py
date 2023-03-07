@@ -1,11 +1,11 @@
-import numbers
 import constants
 
 # --- Input and Validation ---
 is_int = False
 is_number = False
 
-print("Income after withholdings for 2023 in Kansas")
+print("Income and withholdings for 2023 in Kansas")
+print('')
 print('1) Single  2) Married  3) Head of Household')
 status_input = input('Enter your filing Status: ')
 
@@ -13,16 +13,18 @@ while is_int == False:
     try:
         status_input = int(status_input)
         if status_input < 1 or status_input > 3:
+            print('')
             print('Enter a number 1-3')
             status_input = input('Enter your filing Status: ')
         else:
             is_int = True
             continue
     except:
+        print('')
         print('Invalid input')
         status_input = input('Enter your filing Status: ')
 
-print("")
+print('')
 income = input('Enter your gross income: ')
 
 while is_number == False:
@@ -30,6 +32,7 @@ while is_number == False:
         income = float(income)
         is_number = True
     except:
+        print('')
         print('Invalid input, please enter a number')
         income = input('Enter your gross income: ')
 
@@ -72,7 +75,7 @@ for y in range(len(kansas_cap)):
             (constants.kansas_tax_rates[y] * left_to_tax)
         left_to_tax = 0
 
-# --- Final Variables ---
+# --- Final Calculations ---
 fed_taxes_paid = round(fed_taxes_paid, 2)
 kansas_taxes_paid = round(kansas_taxes_paid, 2)
 total_taxes_paid = round((fed_taxes_paid + kansas_taxes_paid), 2)
@@ -83,6 +86,10 @@ monthly_income = round((income_after_tax / 12), 2)
 print('')
 print('Federal Taxes Paid: ', fed_taxes_paid)
 print('Kansas Taxes Paid: ', kansas_taxes_paid)
+print('')
 print('Income After Tax: ', income_after_tax)
+print('')
 print('Monthly Income: ', monthly_income)
 print('')
+print("________________________________")
+input("Press ENTER to exit")
