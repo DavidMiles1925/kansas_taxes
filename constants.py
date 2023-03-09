@@ -16,3 +16,6 @@ social_security_max = 160200 / 2  # (Employer Pays Half)
 medicare_rate = 0.0145
 medicare_premium_rate = 0.009
 medicare_premium_wage = 200000
+
+months_in_year = 12
+weeks_in_year = 52

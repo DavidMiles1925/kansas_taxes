@@ -92,8 +92,8 @@ kansas_taxes_paid = round(kansas_taxes_paid, 2)
 total_taxes_paid = round((fed_taxes_paid + kansas_taxes_paid), 2)
 income_after_tax = round(
     (income - total_taxes_paid - medicare_paid - social_security_paid), 2)
-monthly_income = round((income_after_tax / 12), 2)
-weekly_income = round((income_after_tax / 52), 2)
+monthly_income = round((income_after_tax / constants.months_in_year), 2)
+weekly_income = round((income_after_tax / constants.weeks_in_year), 2)
 
 # --- Output --- #
 print('')
