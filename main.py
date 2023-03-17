@@ -1,3 +1,5 @@
+import os
+import string
 import constants
 
 # --- Input and Validation ---
@@ -14,17 +16,17 @@ while is_int == False:
         status_input = int(status_input)
         if status_input < 1 or status_input > 3:
             print('')
-            print('Enter a number 1-3')
+            print('Invalid input, enter a number 1-3')
             status_input = input('Enter your filing Status: ')
         else:
             is_int = True
             continue
     except:
         print('')
-        print('Invalid input')
+        print('Invalid input, enter a number 1-3')
         status_input = input('Enter your filing Status: ')
 
-income = input('Enter your gross income: ')
+income = input('Enter your gross income: $')
 
 while is_number == False:
     try:
@@ -33,18 +35,21 @@ while is_number == False:
     except:
         print('')
         print('Invalid input, please enter a number')
-        income = input('Enter your gross income: ')
+        income = input('Enter your gross income: $')
 
 # --- Status Logic --- #
 if (status_input == 1):
     fed_cap = constants.fed_single_caps
     kansas_cap = constants.kansas_single_caps
+    filing_status = 'Single'
 elif (status_input == 2):
     fed_cap = constants.fed_married_caps
     kansas_cap = constants.kansas_married_caps
+    filing_status = 'Married'
 elif (status_input == 3):
     fed_cap = constants.fed_hoh_caps
     kansas_cap = constants.kansas_hoh_caps
+    filing_status = 'Head of Household'
 
 # --- Federal Tax Calculation --- #
 fed_taxes_paid = 0
@@ -116,4 +121,42 @@ print('Monthly Income:       $', monthly_income)
 print('Weekly Income:        $', weekly_income)
 print('')
 print("_________________________________________")
+print('Written by David Miles')
+print('')
+
+write_to_file = input('Write output to file? (y/n)')
+
+if write_to_file == 'y' or write_to_file == 'Y':
+    print('')
+    fname = input('Enter file name: ')
+
+    count = len(fname)
+
+    if fname[(count-4):count] != '.txt':
+        fname = fname + '.txt'
+
+    if os.path.exists(fname):
+        fout = open(fname, 'a')
+    else:
+        fout = open(fname, 'w')
+
+    fout.write('***************** Income ****************' + '\n\n')
+    fout.write('Income:          $' + str(income) + '\n')
+    fout.write('Filing Status:    ' + filing_status + '\n\n')
+    fout.write('***************** Taxes *****************' + '\n\n')
+    fout.write('Federal Taxes Paid:   $' + str(fed_taxes_paid) + '\n')
+    fout.write('Kansas Taxes Paid:    $' + str(kansas_taxes_paid) + '\n\n')
+    fout.write('***************** FICA ******************' + '\n\n')
+    fout.write('Social Security Paid: $' + str(social_security_paid) + '\n')
+    fout.write('Medicare Paid:        $' + str(medicare_paid) + '\n\n')
+    fout.write('***************** Income ****************' + '\n\n')
+    fout.write('Net Income:           $' + str(income_after_tax) + '\n\n')
+    fout.write('Monthly Income:       $' + str(monthly_income) + '\n')
+    fout.write('Weekly Income:        $' + str(weekly_income) + '\n\n')
+    fout.write('_________________________________________\n')
+    fout.write('Written by David Miles\n\n')
+    fout.close()
+
+print('')
 input("Press ENTER to exit")
+exit()

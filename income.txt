@@ -1,0 +1,100 @@
+***************** Income ****************
+
+Income:          $40000.0
+Filing Status:    Married
+
+***************** Taxes *****************
+
+Federal Taxes Paid:   $4360.0
+Kansas Taxes Paid:    $1455.0
+
+***************** FICA ******************
+
+Social Security Paid: $2480.0
+Medicare Paid:        $580.0
+
+***************** Income ****************
+
+Net Income:           $31125.0
+
+Monthly Income:       $2593.75
+Weekly Income:        $598.56
+
+_________________________________________
+Written by David Miles
+
+***************** Income ****************
+
+Income:          $50000.0
+Filing Status:    Married
+
+***************** Taxes *****************
+
+Federal Taxes Paid:   $5560.0
+Kansas Taxes Paid:    $1980.0
+
+***************** FICA ******************
+
+Social Security Paid: $3100.0
+Medicare Paid:        $725.0
+
+***************** Income ****************
+
+Net Income:           $38635.0
+
+Monthly Income:       $3219.58
+Weekly Income:        $742.98
+
+_________________________________________
+Written by David Miles
+
+***************** Income ****************
+
+Income:          $60000.0
+Filing Status:    Married
+
+***************** Taxes *****************
+
+Federal Taxes Paid:   $6760.0
+Kansas Taxes Paid:    $2505.0
+
+***************** FICA ******************
+
+Social Security Paid: $3720.0
+Medicare Paid:        $870.0
+
+***************** Income ****************
+
+Net Income:           $46145.0
+
+Monthly Income:       $3845.42
+Weekly Income:        $887.4
+
+_________________________________________
+Written by David Miles
+
+***************** Income ****************
+
+Income:          $70000.0
+Filing Status:    Married
+
+***************** Taxes *****************
+
+Federal Taxes Paid:   $7960.0
+Kansas Taxes Paid:    $3030.0
+
+***************** FICA ******************
+
+Social Security Paid: $4340.0
+Medicare Paid:        $1015.0
+
+***************** Income ****************
+
+Net Income:           $53655.0
+
+Monthly Income:       $4471.25
+Weekly Income:        $1031.83
+
+_________________________________________
+Written by David Miles
+
