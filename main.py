@@ -1,5 +1,4 @@
 import os
-import string
 import constants
 
 # --- Input and Validation ---
@@ -100,7 +99,7 @@ income_after_tax = round(
 monthly_income = round((income_after_tax / constants.months_in_year), 2)
 weekly_income = round((income_after_tax / constants.weeks_in_year), 2)
 
-# --- Output --- #
+# --- Output to Console --- #
 print('')
 print('')
 print('***************** Taxes *****************')
@@ -124,6 +123,7 @@ print("_________________________________________")
 print('Written by David Miles')
 print('')
 
+# --- Output to File --- #
 write_to_file = input('Write output to file? (y/n)')
 
 if write_to_file == 'y' or write_to_file == 'Y':
