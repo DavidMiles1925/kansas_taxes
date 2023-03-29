@@ -151,6 +151,31 @@ def calculateSocialSecurity(gross_income):
     return round(social_security_paid, 2)
 
 
+def outputToConsole(taxes, income):
+    print('')
+    print('')
+    print('***************** Taxes *****************')
+    print('')
+    print('Federal Taxes Paid:   $', taxes['fed_taxes_paid'])
+    print('Kansas Taxes Paid:    $', taxes['kansas_taxes_paid'])
+    print('')
+    print('***************** FICA ******************')
+    print('')
+    print('Social Security Paid: $', taxes['social_security_paid'])
+    print('Medicare Paid:        $', taxes['medicare_paid'])
+    print('')
+    print('***************** Income ****************')
+    print('')
+    print('Net Income:           $', income['income_after_tax'])
+    print('')
+    print('Monthly Income:       $', income['monthly_income'])
+    print('Weekly Income:        $', income['weekly_income'])
+    print('')
+    print("_________________________________________")
+    print('Written by David Miles')
+    print('')
+
+
 def outputToFile(taxes, income, gross_income, filing_status_text):
     write_to_file = input('Write output to file? (y/n)')
 
@@ -191,31 +216,9 @@ def outputToFile(taxes, income, gross_income, filing_status_text):
         fout.write('_________________________________________\n')
         fout.write('Written by David Miles\n\n')
         fout.close()
-
-
-def outputToConsole(taxes, income):
-    print('')
-    print('')
-    print('***************** Taxes *****************')
-    print('')
-    print('Federal Taxes Paid:   $', taxes['fed_taxes_paid'])
-    print('Kansas Taxes Paid:    $', taxes['kansas_taxes_paid'])
-    print('')
-    print('***************** FICA ******************')
-    print('')
-    print('Social Security Paid: $', taxes['social_security_paid'])
-    print('Medicare Paid:        $', taxes['medicare_paid'])
-    print('')
-    print('***************** Income ****************')
-    print('')
-    print('Net Income:           $', income['income_after_tax'])
-    print('')
-    print('Monthly Income:       $', income['monthly_income'])
-    print('Weekly Income:        $', income['weekly_income'])
-    print('')
-    print("_________________________________________")
-    print('Written by David Miles')
-    print('')
+        print('File Written: ' + str(os.getcwd()) + '\\' + fname)
+    else:
+        print('No file was written')
 
 
 if __name__ == "__main__":
