@@ -6,23 +6,42 @@ def main():
     displayWelcome()
 
     filing_status = getFilingStatus()
-    gross_income = getGrossIncome()
+    gross_income = getDollarAmount('Enter your gross income')
 
-    taxes = calculateTaxes(gross_income, filing_status)
+    # Adding tax credit feature
+    tax_credits = getDollarAmount('Tax Credit Amount?')
+
+    taxes = calculateTaxes(gross_income, filing_status, tax_credits)
     income = calculateIncome(gross_income, taxes)
 
     outputToConsole(taxes, income)
-    outputToFile(taxes, income, gross_income, filing_status['text'])
+    outputToFile(taxes, income, gross_income,
+                 filing_status['text'], tax_credits)
+
+
+def getDollarAmount(prompt):
+    number = input(prompt + ': $')
+
+    is_number = False
+    while is_number == False:
+        try:
+            number = float(number)
+            is_number = True
+        except:
+            print('')
+            print('Invalid input, please enter a number')
+            number = input('${prompt}: $')
+    return number
 
 
 def displayWelcome():
     print("Income and withholdings for 2023 in Kansas")
     print('')
-    print('1) Single  2) Married  3) Head of Household')
 
 
 def getFilingStatus():
     is_int = False
+    print('1) Single  2) Married  3) Head of Household')
     status_input = input('Enter your filing Status: ')
 
     while is_int == False:
@@ -59,21 +78,6 @@ def getFilingStatus():
     return status_dictionary
 
 
-def getGrossIncome():
-    income = input('Enter your gross income: $')
-
-    is_number = False
-    while is_number == False:
-        try:
-            income = float(income)
-            is_number = True
-        except:
-            print('')
-            print('Invalid input, please enter a number')
-            income = input('Enter your gross income: $')
-    return income
-
-
 def calculateIncome(gross_income, taxes):
     income_after_tax = gross_income - \
         taxes['fed_taxes_paid'] - taxes['kansas_taxes_paid'] - \
@@ -85,9 +89,9 @@ def calculateIncome(gross_income, taxes):
     return {'income_after_tax': income_after_tax, 'monthly_income': monthly_income, 'weekly_income': weekly_income}
 
 
-def calculateTaxes(gross_income, filing_status):
+def calculateTaxes(gross_income, filing_status, tax_credits):
     fed_taxes_paid = calculateFederalTaxes(
-        gross_income, filing_status['fed_cap'])
+        gross_income, filing_status['fed_cap'], tax_credits)
 
     kansas_taxes_paid = calculateStateTaxes(
         gross_income, filing_status['state_cap'])
@@ -98,7 +102,7 @@ def calculateTaxes(gross_income, filing_status):
     return {'fed_taxes_paid': fed_taxes_paid, 'kansas_taxes_paid': kansas_taxes_paid, 'social_security_paid': social_security_paid, 'medicare_paid': medicare_paid}
 
 
-def calculateFederalTaxes(gross_income, fed_cap):
+def calculateFederalTaxes(gross_income, fed_cap, tax_credits):
     fed_taxes_paid = 0
     left_to_tax = gross_income
 
@@ -111,6 +115,8 @@ def calculateFederalTaxes(gross_income, fed_cap):
             fed_taxes_paid = fed_taxes_paid + \
                 (constants.fed_tax_rates[x] * left_to_tax)
             left_to_tax = 0
+
+    fed_taxes_paid = fed_taxes_paid - tax_credits
 
     return round(fed_taxes_paid, 2)
 
@@ -176,7 +182,7 @@ def outputToConsole(taxes, income):
     print('')
 
 
-def outputToFile(taxes, income, gross_income, filing_status_text):
+def outputToFile(taxes, income, gross_income, filing_status_text, tax_credits):
     write_to_file = input('Write output to file? (y/n)')
 
     if write_to_file == 'y' or write_to_file == 'Y':
@@ -195,6 +201,7 @@ def outputToFile(taxes, income, gross_income, filing_status_text):
 
         fout.write('***************** Income ****************' + '\n\n')
         fout.write('Income:          $' + str(gross_income) + '\n')
+        fout.write('Tax Credits:     $' + str(tax_credits) + '\n')
         fout.write('Filing Status:    ' + filing_status_text + '\n\n')
         fout.write('***************** Taxes *****************' + '\n\n')
         fout.write('Federal Taxes Paid:   $' +
