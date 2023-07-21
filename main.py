@@ -8,7 +8,6 @@ def main():
     filing_status = getFilingStatus()
     gross_income = getDollarAmount('Enter your gross income')
 
-    # Adding tax credit feature
     tax_credits = getDollarAmount('Tax Credit Amount?')
 
     taxes = calculateTaxes(gross_income, filing_status, tax_credits)
@@ -17,21 +16,6 @@ def main():
     outputToConsole(taxes, income)
     outputToFile(taxes, income, gross_income,
                  filing_status['text'], tax_credits)
-
-
-def getDollarAmount(prompt):
-    number = input(prompt + ': $')
-
-    is_number = False
-    while is_number == False:
-        try:
-            number = float(number)
-            is_number = True
-        except:
-            print('')
-            print('Invalid input, please enter a number')
-            number = input('${prompt}: $')
-    return number
 
 
 def displayWelcome():
@@ -76,6 +60,21 @@ def getFilingStatus():
                          'state_cap': kansas_cap, 'text': filing_status_text}
 
     return status_dictionary
+
+
+def getDollarAmount(prompt):
+    number = input(prompt + ': $')
+
+    is_number = False
+    while is_number == False:
+        try:
+            number = float(number)
+            is_number = True
+        except:
+            print('')
+            print('Invalid input, please enter a number')
+            number = input(f'{prompt}: $')
+    return number
 
 
 def calculateIncome(gross_income, taxes):

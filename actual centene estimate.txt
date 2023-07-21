@@ -1,25 +1,25 @@
 ***************** Income ****************
 
-Income:          $87000.0
+Income:          $70000.0
 Tax Credits:     $5050.0
 Filing Status:    Married
 
 ***************** Taxes *****************
 
-Federal Taxes Paid:   $4950.0
-Kansas Taxes Paid:    $3922.5
+Federal Taxes Paid:   $2910.0
+Kansas Taxes Paid:    $3030.0
 
 ***************** FICA ******************
 
-Social Security Paid: $5394.0
-Medicare Paid:        $1261.5
+Social Security Paid: $4340.0
+Medicare Paid:        $1015.0
 
 ***************** Income ****************
 
-Net Income:           $71472.0
+Net Income:           $58705.0
 
-Monthly Income:       $5956.0
-Weekly Income:        $1374.46
+Monthly Income:       $4892.08
+Weekly Income:        $1128.94
 
 _________________________________________
 Written by David Miles
