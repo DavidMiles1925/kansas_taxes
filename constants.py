@@ -20,5 +20,3 @@ medicare_premium_wage = 200000
 
 months_in_year = 12
 weeks_in_year = 52
-
-# This is some text added for the sake of a new commit
